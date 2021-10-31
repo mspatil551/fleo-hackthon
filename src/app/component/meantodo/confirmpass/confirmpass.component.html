@@ -1,0 +1,38 @@
+<div class="backimg">
+    <div class="container">
+        <div class="blackcolor"></div>
+        <div class="row">
+          
+            <div class="col-lg-6 mx-auto"> 
+                <div class='card'>
+                    <div class="card-header">
+                        <div class="alert alert-danger text-center"*ngIf="cond">{{msg}}</div>
+                        <h4 class="text-center text-light">Forgot Password</h4>
+                    </div>
+                <div class='card-body'>
+                   <form #form='ngForm' (ngSubmit)='resetpassword(form)'>
+                               
+                       <div class='form-group my-2'>
+                           <p class='from-lebal text-light'>Enter new password</p> 
+                           <input type='text' name='password' ngModel class='form-control my-3'
+                               placeholder='enter your password' required #password='ngModel'[ngClass]="{'is-invalid': password.invalid && password.touched, 'is-valid': password.valid }">
+                           <p class='invalid-feedback'>please provide this</p>
+                       </div>
+                       <div class='form-group my-2'>
+                           <p class='from-lebal text-light'>Confirm password</p> 
+                           <input type='text' name='conpassword' ngModel class='form-control my-3'
+                               placeholder='enter your conpassword' required #conpassword='ngModel'[ngClass]="{'is-invalid': conpassword.invalid && conpassword.touched, 'is-valid': conpassword.valid }">
+                           <p class='invalid-feedback'>please provide this</p>
+                       </div>
+                       
+                      <div class="d-flex justify-content-between">
+                       <button class="btn btn-primary" type="submit">forgot pass</button>
+                       <button class="btn btn-danger"><a routerLink="../../login" class="mylink link-light">cancel</a></button>
+                      </div>
+                   </form>
+                </div>
+                 </div>
+            </div>
+        </div>
+    </div>
+</div>

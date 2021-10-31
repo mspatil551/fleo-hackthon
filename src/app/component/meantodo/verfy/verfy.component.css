@@ -1,0 +1,6 @@
+  .myimg{
+      height: 100vh;
+      background-image: url("../../../../assets/loading.gif");
+      background-image: cover;
+      background-repeat: no-repeat;
+  }

@@ -1,0 +1,12 @@
+*{
+    font-family: monospace;
+}
+.backimg{
+    background: url('../../../../assets/newoops.png');
+    height: 100vh;
+    background-position: bottom;
+    /* display: flex; */
+    /* display: flex; */
+}
+ 
+ 

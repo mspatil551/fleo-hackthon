@@ -1,0 +1,40 @@
+<div class="backimg ">
+    <div class="container ">
+        <div class="row">
+            <div class="blackcolor"></div>
+            <div class="col-lg-6 col-sm-12 mx-auto">
+                <div class='card'>
+                    <div class='card-header'>
+                        <div class="alert alert-danger text-center" *ngIf="msg">{{usermsg}}</div>
+                        <h4 class="text-center text-warning">login user</h4>
+                    </div>
+                    <div class='card-body'>
+                        <form #form='ngForm' (ngSubmit)='loginuser(form)'>
+                            
+                            <div class='input-group my-2'>
+                                <span class='input-group-text'>Username</span>  
+                                <input type='text' name='username' ngModel class='form-control'
+                                    placeholder='enter your username' required #username='ngModel'[ngClass]="{'is-invalid': username.invalid && username.touched, 'is-valid': username.valid }">
+                                <p class='invalid-feedback'>please provide this</p>
+                            </div>
+                            
+                            <div class='input-group my-2'>
+                                <span class='input-group-text'>Password</span>
+                                <input type='password' name='password' ngModel class='form-control'
+                                    placeholder='enter your password' required #password='ngModel'[ngClass]="{'is-invalid': password.invalid && password.touched, 'is-valid': password.valid }">
+                                <p class='invalid-feedback'>please provide this</p>
+                            </div>
+                            <button class="btn btn-warning w-100 my-2"[disabled]="!form.form.valid">login</button>
+                       <div class="d-flex justify-content-between">
+                        <a routerLink=""  class="nav-link link-light">don't have an account?</a>
+                        <a routerLink="../forgot"  class="nav-link link-light">forgot password</a>
+                       </div>
+                        </form>
+                    </div>
+                    
+                 </div>
+            </div>
+           
+        </div>
+    </div>
+</div>

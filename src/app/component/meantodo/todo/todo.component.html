@@ -1,0 +1,129 @@
+<div class="back">
+  <div class="container">
+    <div class="row">
+      <div class="blackcolor"></div>
+        <div class="col-lg-6 col-sm-12 ">
+            <div class='card'>
+             
+                <div class='card-header d-flex justify-content-between'>
+                    <h4 class="text-center"><i class="fa fa-list text-warning" aria-hidden="true"></i> Todo List</h4>
+                            <!--off canvas  -->
+                            <button class="btn btn-outline-primary" (click)="getuserinformation()" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
+                              aria-controls="offcanvasRight"><i class="fa fa-user" aria-hidden="true"></i></button>
+                           <!--off canvas  -->
+                </div>
+                <div class='card-body'>
+                    <form #form='ngForm' (ngSubmit)='todofunction(form)'>
+                        <div class='from-group my-2'>
+                            
+                            <input type='text' name='task' ngModel class='form-control' placeholder='Enter task name' required
+                                #task='ngModel'
+                                [ngClass]="{'is-invalid': task.invalid && task.touched, 'is-valid': task.valid }">
+                            <p class='invalid-feedback'>please provide this feed</p>
+                        </div>
+                        <div class='input-group my-3'>
+                            
+                            <textarea name="desc" ngModel class="form-control" placeholder="Enter description of task"
+                                #desc="ngModel" required cols="30" rows="3"
+                                [ngClass]="{'is-invalid': desc.invalid && desc.touched, 'is-valid': desc.valid }"></textarea>
+                            <p class='invalid-feedback'>please provide this feed</p>
+                        </div>
+                        <div class='input-group mt-3'>
+                            <select class="form-control" name="priority" ngModel #priority="ngModel" required
+                                placeholder="priority"
+                                [ngClass]="{'is-invalid': priority.invalid && priority.touched, 'is-valid': priority.valid }">
+                                <option value="" selected>select priority</option>
+                                <option value="high">high</option>
+                                <option value="mid">mid</option>
+                                <option value="low">low</option>
+                            </select>
+                            <p class='invalid-feedback'>please provide this feed</p>
+                        </div>
+                        <button class="btn btn-outline-primary w-100 my-2" type="submit" [disabled]="!form.form.valid">add
+                            task</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 col-sm-12 ">
+            <h2 class="text-light">Your List 📃</h2>
+           <div *ngIf="mydata!=null">
+            <div *ngFor="let item of mydata">
+                <div class='card my-2 border'*ngFor="let data of item.data" [ngClass]="{'border-danger':data.priority=='high','border-primary':data.priority=='mid','border-success':data.priority=='low'}">
+                        <div class='card-header d-flex justify-content-between'data-bs-toggle="collapse" attr.data-bs-target="#card{{data._id}}">
+                                {{data.task}}
+                              <div>
+                                <button (click)="edittodo(data)"data-bs-target="#model" data-bs-toggle="modal"><i class="fa fa-edit text-success" aria-hidden="true"></i></button>
+                                <button (click)="deletetodo(data)"data-bs-target="#delete" data-bs-toggle="modal"><i class="fa fa-trash text-danger" aria-hidden="true"></i></button>
+                              </div>
+                        </div>
+                        <div class="collapse"id="card{{data._id}}">
+                            <div class='card-body'>
+                                {{data.desc}}
+                            </div>
+                        </div>
+                    </div>
+            </div>
+           </div>
+           <div *ngIf="mydata==''">
+                <h2 class="text-center text-danger">no data found</h2>
+           </div>
+        </div>
+    </div>
+    <div class="modal fade" id="model" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdrop" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+             <h4 class="text-center">update todo list</h4>
+          </div>
+          <div class="modal-body">
+            <input type="text"[(ngModel)]="mytask" class="form-control my-2">
+            <textarea class="form-control my-2" name="" id="" cols="30" rows="3" [(ngModel)]="mydesc"></textarea>
+            <select name="" id=""[(ngModel)]="myprio" class="form-control my-2">
+                <option value="high">high</option>
+                <option value="mid">mid</option>
+                <option value="low">low</option>
+            </select>
+            <button class="btn btn-success"(click)="updatetodouser()"data-bs-dismiss="modal">updateuser</button>
+            <button class="btn btn-danger"data-bs-dismiss="modal">Cancel</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal fade" id="delete" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdrop" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+             <h4 class="text-center">Are you sure to delete</h4>
+          </div>
+          <div class="modal-body">
+            <div class="d-flex">
+                <button class="btn btn-success" (click)="deleteusertodo()" data-bs-dismiss="modal">YES</button>
+                <button class="btn btn-danger"data-bs-dismiss="modal">NO</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+</div>
+
+</div>
+<!-- offcanvas  -->
+<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+  <div class="offcanvas-header">
+    <h5 id="offcanvasRightLabel">Your profile</h5>
+    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
+      <h3 class="text-center text-primary fw-bolder display-1"><i class="fa fa-user" aria-hidden="true"></i></h3>
+      <h5 class="text-center my-3">{{myusername}}</h5>
+      <h5 class="text-center my-3">{{myuseremail}}</h5>
+      <a routerLink="../changepassword" class="nav-link link-dark"> <i class="fa fa-lock text-primary" aria-hidden="true"></i> change password</a>
+      <div class="btn-group w-100 my-2">
+        <button class="btn btn-outline-primary"(click)="addanotheraccount()">Add another account <i class="fa fa-plus" aria-hidden="true"></i></button>
+        <button class="btn btn-outline-success"(click)="logoutuser()">Sign out <i class="fa fa-arrow-right" aria-hidden="true"></i></button>
+      </div>
+  </div>
+</div>
+<!-- offcanvas  -->

@@ -1,0 +1,22 @@
+   <div class="container ">
+     <h4 class="alert alert-success text-center">Hii<span id="loginuser"></span> <button class="btn btn-primary"onclick="logout()"> logout</button></h4>
+     <div class="row">
+       <div class="col-lg-6 col-md-6 col-sm-10 col-12 mx-auto">
+         <div class="card">
+           <div class="card-header">
+             <h1 class="text-center text-success">Add Todo</h1>
+           </div>
+           <div class="card-body">
+            <input type="text" class="form-control border border-success"placeholder="Enter task name"id="taskname"><br>
+            <textarea name=""  cols="30" rows="3" class="form-control border border-success"placeholder="Enter Description"id="descript"></textarea><br>
+            <select  class="form-control" id="priority">
+              <option value="">choose priority</option>
+              <option value="high" class="text-danger">high</option>
+              <option value="mid" class="text-warning">mid</option>
+              <option value="low"class="text-success">low</option>
+            </select>
+            <br>
+             <button class="btn btn-outline-success w-100"onclick="addtask()">Add task</button>
+            </div>
+         </div>
+       </div>

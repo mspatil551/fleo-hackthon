@@ -1,0 +1,36 @@
+<div class="backimg">
+    <div class="container">
+        <div class="blackcolor"></div>
+        <div class="row">
+          
+            <div class="col-lg-6 mx-auto">
+                <div class='card'>
+                    <div class="card-header">
+                        <div class="alert alert-danger text-center" *ngIf="msg">{{usermsg}}</div>
+                        <h4 class="text-center text-light">Forgot Password</h4>
+                    </div>
+                <div class='card-body' *ngIf="cond">
+                   <form #form='ngForm' (ngSubmit)='forgotpass(form)'>
+                               
+                       <div class='form-group my-2'>
+                           <p class='from-lebal text-light'>Enter your registred Email</p> 
+                           <input type='text' name='email' ngModel class='form-control my-3'
+                               placeholder='enter your email' required #email='ngModel'[ngClass]="{'is-invalid': email.invalid && email.touched, 'is-valid': email.valid }">
+                           <p class='invalid-feedback'>please provide this</p>
+                       </div>
+                       
+                      <div class="d-flex justify-content-between">
+                       <button class="btn btn-primary" type="submit"[disabled]="!form.form.valid">forgot pass</button>
+                       
+                         <button class="btn btn-danger"><a routerLink="../login" class="mylink link-light">cancel</a></button>
+                      </div>
+                   </form>
+                </div>
+                <div class="card-body"*ngIf="!cond">
+                    <a href="" class="text-center link-light nav-link " target="_blank">goto email page to check email</a>
+                </div>
+                 </div>
+            </div>
+        </div>
+    </div>
+</div>

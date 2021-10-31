@@ -1,0 +1,50 @@
+<div class="container">
+    <div class="row">
+        <div class="col-lg-4 mx-auto" *ngFor="let item of Tatasteelsales">
+            <div class='card' (click)="showcard(item.child)">
+            <div class='card-header'>
+            <div class="d-flex justify-content-around"><span>Tata steel</span> <span>{{(item.totalsales/item.targetsales)*100}}<span>%</span> completed</span></div>
+            </div>
+            <div class='card-body'>
+              <div class="d-flex justify-content-around">
+                <div>
+                    <p>Total sales <span>{{item.totalsales}}</span>crore</p>
+                    <p>target sales <span>{{item.targetsales}}</span>crore</p>
+                </div>
+                <button class="btn" 
+                [ngClass]=
+                "{'btn-warning':showtrack(item.totalsales,item.targetsales)=='off track',
+                'btn-danger':showtrack(item.totalsales,item.targetsales)=='at risk',
+                'btn-dark':showtrack(item.totalsales,item.targetsales)=='on track'  
+                }"
+                >{{showtrack(item.totalsales,item.targetsales)}}</button>
+              </div>
+            </div>
+            <div class='card-footer'></div>
+            </div>
+        </div>
+       <div class="row"*ngIf="isshow">
+        <div class="col-lg-4 mx-auto"  *ngFor="let item of secondchild">
+            <div class='card' (click)="showcard(item)">
+                <div class='card-header'>
+                <div class="d-flex justify-content-around"><span>{{item.child}}</span> <span>{{(item.totalsales/item.targetsales)*100}}<span>%</span> completed</span></div>
+                </div>
+                <div class='card-body'>
+                  <div class="d-flex justify-content-around">
+                    <div>
+                        <p>Total sales <span>{{item.totalsales}}</span> crore</p>
+                        <p>target sales <span>{{item.targetsales}}</span> crore</p>
+                    </div>
+                    <button class="btn" 
+                    [ngClass]=
+                    "{'btn-warning':showtrack(item.totalsales,item.targetsales)=='off track',
+                    'btn-danger':showtrack(item.totalsales,item.targetsales)=='at risk'  
+                    }"
+                    >{{showtrack(item.totalsales,item.targetsales)}}</button>
+                  </div>
+                </div>
+              
+        </div>
+       </div>
+    </div>
+</div>

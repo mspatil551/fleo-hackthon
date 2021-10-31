@@ -1,0 +1,52 @@
+ <div class="container">
+     <div class="row">
+         <div class="col-sm-6 mx-auto">
+             <div class='card'>
+             <div class='card-header'>
+                 Reactive form
+             </div>
+             <div class='card-body'>
+                 <!-- formgroup 
+                 formcontrol
+                 formarry 
+                 validators -->
+                  <form [formGroup]="form1" (ngSubmit)="reactiveform()">
+                    <!----<div class="form-group">
+                        <input formControlName="email" [ngClass]="{'is-invalid':!form1.get('email')?.valid  && form1.get('email')?.touched,'is-valid':form1.get('email')?.valid && form1.get('email')?.touched }" type="text"class="form-control" placeholder="Enter some data"> <br>
+                        <p class="invalid-feedback">sorry please fill this 😢</p>
+                        <p class="valid-feedback">Thank you 😊</p>
+                    </div>
+                    <div class="form-group">
+                        <textarea formControlName="description" [ngClass]="{'is-invalid':!form1.get('description')?.valid && form1.get('description')?.touched,'is-valid':form1.get('description')?.valid && form1.get('description')?.touched}" name="" id="" cols="30" rows="3" class="form-control" placeholder="enter description"></textarea>
+                        <p class="invalid-feedback">plz enter this feed</p>
+                        <p class="valid-feedback">Thank you 😊</p>
+                    </div>
+                    <div class="form-group">
+                        <input formControlName="skills" [ngClass]="{'is-invalid':!form1.get('skills')?.valid && form1.get('skills')?.touched,'is-valid':form1.get('skills')?.valid && form1.get('skills')?.touched}" name="" id=""  class="form-control" placeholder="enter skills">
+                        <p class="invalid-feedback">plz enter this feed</p>
+                        <p class="valid-feedback">Thank you 😊</p>
+                    </div> ---->
+                     <button class="btn btn-outline-danger">send <i class="fa fa-paper-plane" aria-hidden="true"></i></button> 
+                     <!-- <div formArrayName="skills"> -->
+                         <!-- <button class="btn btn-primary" (click)="addfield()">add</button> -->
+                         <!-- <div *ngFor="let item of form1.get('skills')?.value">
+                             <input type="text" class="form-control" value="{{item.value}}"> 
+                         </div> -->
+                     <!-- </div> -->
+                     <div formArrayName="skills" >
+                        <button class="btn btn-primary" type="submit" (click)="addfield()">add</button>
+                  
+                     <div class='input-group'*ngFor="let item of form1.get('skills')?.value,let i=index,TrackBy:trackbyfun">
+                    <div class="d-flex" >
+                        <input type='text' class='form-control' [formControlName]="i"> 
+                        <button class="btn btn-outline-light"  type="button" (click)="removeitem(i)"><i class="fa fa-trash text-danger" aria-hidden="true"></i></button>
+                    </div>
+                </div>
+                     </div>   
+                 </form>
+                       
+             </div>
+             </div>
+         </div>
+     </div>
+ </div>

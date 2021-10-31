@@ -1,0 +1,31 @@
+.back{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url('../../../../assets/todo back.jpg');
+    height: 100vh;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position:center;
+}
+/* *{
+    background-color: none;
+    background: none;
+    color: white;
+} */
+.blackcolor{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(160, 147, 147, 0.4);
+}
+@media(max-width:900px){
+    .back{
+        height: max-content;
+    }
+    /* *{
+        display: none;
+    } */
+}
